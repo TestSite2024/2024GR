@@ -11,13 +11,18 @@
      * From http://diveintohtml5.info/
      */
 
+    var color1 = '#ff95c8';
+    var color2 = '#5194f8';
     var color3 ='#969696';
+    var colortxt1 = '#F860AA';
     var colortxt2= '#7FB1ED';
     var colortxt3= '#000000';
     //Select the background color
     var color =color3;
     //Select the text color
-    var colortxt = colortxt3;
+    var colortxt = colortxt1;
+    var gendertext1 = "It is a Girl!";
+    var gendertext2 = "It is a Boy!";
     var gendertext3= "It is a Demo!";
     //Select the gender text
     var gendertext = gendertext3;
@@ -160,6 +165,7 @@
         $('#or').show();
         $('#girl').show();
 
+        document.getElementsByTagName("body")[0].style.backgroundColor = "#ffffff";
         document.getElementsByTagName("body")[0].style.backgroundImage = 'url(images/background.jpg)';
         document.getElementById('testtext').remove();
 
@@ -169,7 +175,6 @@
         soundHandle.pause();
         soundHandle.currentTime = 0;    
         return false;
-
     };
     
     /**
@@ -216,9 +221,12 @@
         else {
             $("#baby").text('the baby!');
             surname="the";
+            document.getElementById('surname').style.fontWeight="normal";
         }
 
-        document.getElementById('intro').innerHTML= "This is a gender reveal scratch off for <strong>" + surname + "</strong> family. It contains sound when the gender is revealed. Do you want to continue with sound?";
+        //document.getElementById('intro').innerHTML= "This is a gender reveal scratch off for <strong>" + surname + "</strong> family. It contains sound when the gender is revealed. Do you want to continue with sound?";
+        document.getElementById('surname').innerHTML= surname;
+
         document.getElementById('id01').style.display='block';
         $('.nosoundbtn').on("click", function (e) {
             document.getElementById('id01').style.display='none';
@@ -239,7 +247,6 @@
         document.addEventListener(
             "visibilitychange",
              function(evt) {
-                console.log("page hidden")
               if (document.visibilityState != "visible") {
                 soundHandle.pause();
                 soundHandle.currentTime=0;              }
