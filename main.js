@@ -20,7 +20,7 @@
     //Select the background color
     var color =color3;
     //Select the text color
-    var colortxt = colortxt1;
+    var colortxt = colortxt3;
     var gendertext1 = "It is a Girl!";
     var gendertext2 = "It is a Boy!";
     var gendertext3= "It is a Demo!";
