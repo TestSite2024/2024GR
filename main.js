@@ -43,20 +43,10 @@
      */
     function checkpct() {
         if (!triggered) {
-            if (pct3>0 && pct4>0 && pct5>0)  {
-                if (pct3<15 || pct4<15 || pct5<15)  {
-                //document.getElementById("scratcher3Pct").innerHTML="Scratch MORE!";
-                if (!CrispyToast.clearall()){
-                    CrispyToast.success('Scratch MORE!',{ position: 'top-center' },{timeout: 3000});
-                    }
-                } 
-            }
-            if ((pct1>15 && pct2>15 && pct6>15)&&(pct3<15||pct4<15||pct5<15)) {
-                if (!CrispyToast.clearall()&&!triggered){
-                    CrispyToast.error('Scratch other circles. You havent find the gender yet!',{ position: 'top-center' },{timeout: 6000});
-                    }
-            } 
             if (pct3>15&& pct4>15 && pct5>15) {
+                if(CrispyToast.toasts.length!=0){
+                    CrispyToast.clearall();
+                }
                 $('#boy').text(gendertext);
                 $('#boy').css('color',colortxt);
                 $('#or').hide();
@@ -68,17 +58,42 @@
                 //document.getElementsByTagName("body")[0].style.backgroundImage.animation = 'gradient 15s ease infinite';
                 $('#H3').hide();
                 $('#H4').hide();
+                $('#scratcher3Pct').hide();
 
                 confetti_effect();
             }
+           
+           
     }
     };
+    function check1() {
+        if (!triggered) {
+            if ((pct1>15 && pct2>15 && pct6>15)) {
+                if (CrispyToast.toasts.length===0) {
+                    CrispyToast.error('Scratch other circles. You havent find the gender yet!',{ position: 'top-center', timeout: 2000});
+                }
+            }
+        }
+    }
+    function check2() {
+        if (!triggered) {
+            if (pct3>0 && pct4>0 && pct5>0)  {
+                if (pct3<15 || pct4<15 || pct5<15)  {
+                   if (CrispyToast.toasts.length===0){
+                        CrispyToast.success('Scratch MORE!',{ position: 'top-center',timeout: 2000});
+                    }
+                }   
+            }
+        }
+    }
     function scratcher1Changed(ev) {
         pct1 = (this.fullAmount(40) * 100)|0;
+        check1();
         checkpct();
     };
     function scratcher2Changed(ev) {
         pct2 = (this.fullAmount(40) * 100)|0;
+        check1();
         checkpct();
     };
     function scratcher3Changed(ev) {
@@ -90,19 +105,23 @@
         // inaccuracy:
 
         pct3 = (this.fullAmount(40) * 100)|0;
+        check2();
         checkpct();
         
     };
     function scratcher4Changed(ev) {
         pct4 = (this.fullAmount(40) * 100)|0;
+        check2();
         checkpct();
     };
     function scratcher5Changed(ev) {
         pct5 = (this.fullAmount(40) * 100)|0;
+        check2();
        checkpct();
     };
     function scratcher6Changed(ev) {
         pct6 = (this.fullAmount(40) * 100)|0;
+        check1();
         checkpct();
     };
     function randomInRange(min, max) {
@@ -154,6 +173,7 @@
         pct4=0;
         pct5=0;
         pct6=0;
+        CrispyToast.toasts=[];
         $("#scratcher3Pct").hide();
         $("#resetbutton").hide();
         for (i = 0; i < scratchers.length; i++) {
