@@ -237,9 +237,9 @@
         // }
         surname = params.get('surname');
         if (surname !=null && surname.replace(/\s/g, '').length) {
-            $("#baby").text('baby ' + surname+'!');}
+            $("#baby").text('Baby ' + surname+'!');}
         else {
-            $("#baby").text('the baby!');
+            $("#baby").text('the Baby!');
             surname="the";
             document.getElementById('surname').style.fontWeight="normal";
         }
